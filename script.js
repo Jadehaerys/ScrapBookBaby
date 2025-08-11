@@ -184,7 +184,7 @@ const bgMusic = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicBtn');
 let playing = false;
 
-// Note: browsers often block autoplay with sound until user interacts.
+
 // The music button provides that interaction.
 musicBtn.addEventListener('click', async () => {
   try {
