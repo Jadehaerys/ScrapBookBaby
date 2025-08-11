@@ -51,8 +51,8 @@ body{
 /* Viewer area where pages appear */
 .viewer{
   width:100%;
-  height: calc(100vh - 200px);
-  max-height: 900px;
+  height: calc(100vh - 100px);
+  max-height: 1000px;
   background: linear-gradient(180deg,#fff,#fff8fd);
   border-radius:10px;
   padding:18px;
@@ -198,17 +198,86 @@ body{
 }
 .signature { margin-top:18px; font-style:italic; color:#94415d; }
 
-/* Responsive tweaks */
-@media (max-width:1000px){
-  .page { gap:14px; }
+@media (max-width: 800px) {
+  .album { padding: 14px; }
+  .viewer {
+    height: auto;
+    max-height: none;
+    min-height: 60vh;
+    padding: 12px;
+  }
+  .page {
+    gap: 14px;
+    padding: 8px;
+  }
+  .photocard .photo {
+    padding-bottom: 70%;
+  }
+  .photocard .msg {
+    font-size: 1rem;
+  }
 }
-@media (max-width:800px){
-  .album { padding:16px; }
-  .viewer { height: 60vh; max-height: 680px; }
+
+/* Mobile range: single-column layout for clarity */
+@media (max-width: 600px) {
+  .album {
+    padding: 12px;
+    border-radius: 10px;
+  }
+  .viewer {
+    height: auto;
+    min-height: 70vh;
+    max-height: none;
+    padding: 10px;
+  }
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 14px;
+    padding: 6px;
+  }
+  .photocard {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    background: white;
+  }
+  .photocard .photo {
+    padding-bottom: 68%;
+  }
+  .photocard .msg {
+    font-size: 1.05rem;
+    padding: 12px 10px;
+    background: rgba(255, 255, 255, 0.85);
+  }
+  .album-header h1 {
+    font-size: 1.3rem;
+  }
+  .subtitle {
+    font-size: 0.88rem;
+  }
+  .control-btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  .page-indicator {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
 }
-@media (max-width:600px){
-  .viewer { height: 72vh; }
-  .page{ grid-template-columns: 1fr; grid-template-rows: repeat(4, 1fr); gap: 12px; padding: 12px; }
-  .photocard .msg { font-size: 0.92rem; padding: 8px; }
-  .album-header h1 { font-size: 1.4rem; }
+
+/* Mobile letter page: make it full width and friendly */
+@media (max-width: 600px) {
+  .final-letter {
+    padding: 16px;
+  }
+  .final-letter .letter-box {
+    padding: 20px 14px;
+  }
+  .final-letter h2 {
+    font-size: 1.5rem;
+  }
+  .final-letter p {
+    font-size: 1rem;
+  }
 }
