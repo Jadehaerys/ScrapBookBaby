@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Our 1st Anniversary Scrapbook</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- floating hearts -->
+  <div id="hearts" aria-hidden="true"></div>
+
+  <!-- main album area -->
+  <main class="album" role="main">
+    <header class="album-header">
+      <h1>Our Scrapbook 💖</h1>
+      <p class="subtitle">Happy 1st Anniversary — memories we made together</p>
+    </header>
+
+    <section class="viewer" id="viewer" aria-live="polite">
+      <!-- pages injected by JS; only one .page.visible at a time -->
+    </section>
+
+    <nav class="controls" aria-label="Page navigation">
+      <button id="prevBtn" class="control-btn" aria-label="Previous page">⬅ Prev</button>
+      <div id="pageIndicator" class="page-indicator" aria-hidden="true"></div>
+      <button id="nextBtn" class="control-btn" aria-label="Next page">Next ➡</button>
+    </nav>
+  </main>
+
+  <!-- music control -->
+  <button id="musicBtn" class="music-btn" aria-pressed="false" title="Play / Pause music">🎵</button>
+  <audio id="bgMusic" loop>
+    <source src="music/I Love You Too Much  The Book of Life (Original Motion Picture Soundtrack) - SonySoundtracksVEVO.mp3" type="audio/mpeg" />
+
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

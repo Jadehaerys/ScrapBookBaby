@@ -1,0 +1,214 @@
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root{
+  --pink-1: #ffe6ec;
+  --pink-2: #ffd6e8;
+  --accent: #ff4f8b;
+  --soft: #fff7fa;
+  --card-border: #ffd6e8;
+  --shadow: rgba(0,0,0,0.12);
+  --max-width: 1100px;
+}
+
+/* Body */
+html,body { height: 100%; }
+body{
+  font-family: "Comic Sans MS", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(135deg,var(--pink-1),var(--pink-2));
+  color: #4a2a35;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 24px;
+}
+
+/* Hearts container sits behind content */
+#hearts{
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+}
+
+/* Album wrapper */
+.album{
+  width: 100%;
+  max-width: var(--max-width);
+  background: linear-gradient(180deg,var(--soft),#fff0f5);
+  border: 2px solid rgba(255,150,180,0.25);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 12px 30px var(--shadow);
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.album-header { text-align:center; margin-bottom: 12px; }
+.album-header h1 { color: #b43b66; font-size: 1.8rem; margin-bottom:6px; }
+.subtitle { color: #7a3a4a; opacity:0.9; font-size:0.95rem; }
+
+/* Viewer area where pages appear */
+.viewer{
+  width:100%;
+  height: calc(100vh - 200px);
+  max-height: 900px;
+  background: linear-gradient(180deg,#fff,#fff8fd);
+  border-radius:10px;
+  padding:18px;
+  overflow: hidden;
+  position: relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Page: each page contains 4 photocards in grid */
+.page{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 18px;
+  width: calc(100% - 36px);
+  height: calc(100% - 36px);
+  padding: 12px;
+  transition: transform 450ms cubic-bezier(.2,.8,.2,1), opacity 400ms ease;
+  transform-origin: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Visible page */
+.page.visible{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Page enter/leave animations */
+.page.enter-right { transform: translateX(18%) rotateY(-6deg) scale(0.98); }
+.page.enter-left  { transform: translateX(-18%) rotateY(6deg) scale(0.98); }
+.page.visible { transform: translateX(0) rotateY(0) scale(1); }
+
+/* Photocard style */
+
+
+.photocard .photo{
+  width:100%;
+  height: 0;
+  padding-bottom: 75%; /* keeps a 4:3-ish ratio */
+  background-size: cover;
+  background-position:center;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+  max-height: 70%; /* leaves room for message */
+}
+
+.photocard .msg{
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  color: var(--accent);
+  text-align:center;
+  line-height:1.4;
+  background: transparent;
+}
+
+/* Controls row */
+.controls{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin-top:16px;
+}
+
+.control-btn{
+  background: linear-gradient(180deg,#ff9ab9,#ff6f98);
+  color:white;
+  border:none;
+  padding:10px 16px;
+  font-size:1rem;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 6px 14px rgba(0,0,0,0.12);
+}
+.control-btn:active{ transform: translateY(1px); }
+
+/* Page indicator */
+.page-indicator{
+  font-size:0.95rem;
+  color:#6b3a47;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.6);
+}
+
+/* Music button bottom-right */
+.music-btn{
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 10;
+  background: linear-gradient(180deg,#ff9ab9,#ff6f98);
+  color: white;
+  border: none;
+  width:52px;
+  height:52px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.16);
+}
+
+/* Final letter page (uses same .page class but with a special container) */
+.final-letter{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(255,230,240,0.8), rgba(255,245,250,0.85));
+  position:relative;
+}
+
+.final-letter .letter-box{
+  background: rgba(255,255,255,0.7);
+  padding: 28px;
+  max-width: 880px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  backdrop-filter: blur(6px);
+  text-align:center;
+}
+
+.final-letter h2{
+  font-family: Georgia, 'Times New Roman', serif;
+  color:#b84d6a;
+  margin-bottom:12px;
+  font-size:2rem;
+}
+.final-letter p{
+  font-family: Georgia, serif;
+  color:#5a3e46;
+  line-height:1.7;
+  font-size:1.05rem;
+  white-space:pre-wrap;
+}
+.signature { margin-top:18px; font-style:italic; color:#94415d; }
+
+/* Responsive tweaks */
+@media (max-width:1000px){
+  .page { gap:14px; }
+}
+@media (max-width:800px){
+  .album { padding:16px; }
+  .viewer { height: 60vh; max-height: 680px; }
+}
+@media (max-width:600px){
+  .viewer { height: 72vh; }
+  .page{ grid-template-columns: 1fr; grid-template-rows: repeat(4, 1fr); gap: 12px; padding: 12px; }
+  .photocard .msg { font-size: 0.92rem; padding: 8px; }
+  .album-header h1 { font-size: 1.4rem; }
+}
